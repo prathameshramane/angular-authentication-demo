@@ -1,15 +1,20 @@
 <div class="container form-main">
     <div class="form-container">
-        <form>
+        <form #f="ngForm" (ngSubmit)="login(f.value)">
             <h3 class="mb-3 text-center">Login</h3>
-            <div class="form-outline mb-4">
-                <input type="email" id="email" class="form-control" placeholder="Email" />
+            <div class="alert alert-danger alert-dismissible fade show" *ngIf="invalidLogin">
+                Invalid email and/or password.
+                <button type="button" class="btn-close" (click)="disableInvalid()"></button>
             </div>
             <div class="form-outline mb-4">
-                <input type="password" id="password" class="form-control" placeholder="Password" />
+                <input ngModel name="email" type="email" id="email" class="form-control" placeholder="Email" />
+            </div>
+            <div class="form-outline mb-4">
+                <input ngModel name="password" type="password" id="password" class="form-control"
+                    placeholder="Password" />
             </div>
             <div class="d-grid">
-                <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+                <button type="button" class="btn btn-primary btn-block mb-4" type="submit">Sign in</button>
             </div>
         </form>
     </div>

@@ -1,6 +1,7 @@
 <h1>Home</h1>
+<h3 *ngIf="auth.isAuthenticated()">Welcome {{auth.currentUser.name}}</h3>
 <ul>
-    <li><a routerLink="/admin">Admin</a></li>
-    <li><a routerLink="/login">Login</a></li>
-    <li><a>Logout</a></li>
+    <li *ngIf=" auth.isAuthenticated() && auth.currentUser.admin"><a routerLink="/admin">Admin</a></li>
+    <li *ngIf="!auth.isAuthenticated()"><a routerLink="/login">Login</a></li>
+    <li *ngIf="auth.isAuthenticated()"><a (click)="auth.logout()" class="link-primary">Logout</a></li>
 </ul>
